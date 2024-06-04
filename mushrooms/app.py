@@ -66,7 +66,7 @@ def main():
 
     if classifier == 'SVM':
         st.sidebar.subheader("Select Hyperparameters")
-        C = st.sidebar.number_input("C (Regularization parameter)", 0.01, 10.0, step=0.01, key='C')
+        C = st.sidebar.number_input("C (Regularization parameter)", 0.01, 10.0, step=0.01, key='C_SVM')
         kernel = st.sidebar.radio("Kernel", ('rbf', 'linear'), key="kernel")
         gamma = st.sidebar.radio("Gamma (Kernel Coeff)", ("scale", "auto"), key="gamma" )
 
@@ -85,6 +85,28 @@ def main():
             st.write("Precision", precision_score(y_test, y_pred, labels=class_names).round(2))
             st.write("Recall", recall_score(y_test, y_pred, labels=class_names).round(2))
             plot_metrics(metrics, y_test, y_pred)
+
+    # if classifier == 'Logistic Regression':
+    #     st.sidebar.subheader("Select Hyperparameters")
+    #     C = st.sidebar.number_input("C (Regularization parameter)", 0.01, 10.0, step=0.01, key='C_LR')
+    #     kernel = st.sidebar.radio("Kernel", ('rbf', 'linear'), key="kernel")
+    #     gamma = st.sidebar.radio("Gamma (Kernel Coeff)", ("scale", "auto"), key="gamma" )
+
+    #     metrics = st.sidebar.multiselect("Select metrics to plot", ("Confusion Matrix", "ROC Curve", "Precision-Recall Curve"))
+
+    #     if st.sidebar.button("Classify", key="classify"):
+    #         st.subheader("SVM Results")
+            
+    #         model = SVC(C=C, kernel=kernel, gamma=gamma)
+    #         model.fit(x_train, y_train)
+
+    #         y_pred = model.predict(x_test)
+    #         accuracy = accuracy_score(y_test, y_pred)
+
+    #         st.write("Accuracy", accuracy)
+    #         st.write("Precision", precision_score(y_test, y_pred, labels=class_names).round(2))
+    #         st.write("Recall", recall_score(y_test, y_pred, labels=class_names).round(2))
+    #         plot_metrics(metrics, y_test, y_pred)
 
 
 
